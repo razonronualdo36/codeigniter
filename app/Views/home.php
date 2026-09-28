@@ -1,49 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<?= $this->extend('layouts/main') ?>
 
-    <title>Home</title>
+<?= $this->section('content') ?>
+<section class="hero">
+    <div>
+        <span class="eyebrow">Account management</span>
+        <h1>POS Control Center</h1>
+        <p>Manage customer information and staff user accounts from one clean dashboard.</p>
+        <div class="hero-actions">
+            <a class="button button-primary" href="<?= site_url('customers/new') ?>">Add customer</a>
+            <a class="button button-secondary" href="<?= site_url('users/new') ?>">Add user</a>
+        </div>
+    </div>
+    <div class="hero-mark" aria-hidden="true">POS</div>
+</section>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 100px;
-        }
+<section class="stats-grid" aria-label="Account totals">
+    <article class="stat-card stat-card-customer">
+        <div class="stat-icon">C</div>
+        <div>
+            <span class="stat-label">Customers</span>
+            <strong><?= esc($customerCount) ?></strong>
+            <a href="<?= site_url('customers') ?>">View customer accounts &rarr;</a>
+        </div>
+    </article>
 
-        .button {
-            display: inline-block;
-            padding: 15px 25px;
-            margin: 10px;
+    <article class="stat-card stat-card-user">
+        <div class="stat-icon">U</div>
+        <div>
+            <span class="stat-label">Users</span>
+            <strong><?= esc($userCount) ?></strong>
+            <a href="<?= site_url('users') ?>">View user accounts &rarr;</a>
+        </div>
+    </article>
+</section>
 
-            background-color: #333;
-            color: white;
-
-            text-decoration: none;
-            border-radius: 5px;
-        }
-
-        .button:hover {
-            background-color: #555;
-        }
-    </style>
-</head>
-
-<body>
-
-    <h1>My CodeIgniter Website</h1>
-
-    <p>Choose a page to visit:</p>
-
-    <a href="<?= base_url('about') ?>" class="button">
-        About Page
-    </a>
-
-    <a href="<?= base_url('students') ?>" class="button">
-        Student List
-    </a>
-
-</body>
-</html>
+<section class="quick-actions">
+    <div class="section-heading">
+        <div><span class="eyebrow">Quick access</span><h2>Common tasks</h2></div>
+    </div>
+    <div class="action-grid">
+        <a class="action-card" href="<?= site_url('customers/new') ?>"><span>01</span><strong>Register a customer</strong><small>Create a new customer account with validated contact details.</small></a>
+        <a class="action-card" href="<?= site_url('users/new') ?>"><span>02</span><strong>Create a user</strong><small>Add a staff account with a unique username.</small></a>
+        <a class="action-card" href="<?= site_url('users') ?>"><span>03</span><strong>Manage profile photos</strong><small>Open a user account to upload or replace its avatar.</small></a>
+    </div>
+</section>
+<?= $this->endSection() ?>

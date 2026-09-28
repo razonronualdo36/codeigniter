@@ -1,36 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Accounts</title>
-</head>
+<?= $this->extend('layouts/main') ?>
 
-<body>
+<?= $this->section('content') ?>
+<div class="page-heading">
+    <div><span class="eyebrow">Team access</span><h1>User Accounts</h1><p>Manage staff identities and profile pictures.</p></div>
+    <a class="button button-primary" href="<?= site_url('users/new') ?>">+ New user</a>
+</div>
 
-    <h1>User Accounts</h1>
-
-    <table border="1" cellpadding="10">
-        <thead>
+<div class="table-card"><div class="table-scroll"><table>
+    <thead><tr><th>User</th><th>Username</th><th>Created</th><th><span class="sr-only">Actions</span></th></tr></thead>
+    <tbody>
+        <?php if ($users === []): ?><tr><td colspan="4" class="empty-state">No user accounts found.</td></tr><?php endif ?>
+        <?php foreach ($users as $user): ?>
+            <?php $avatarUrl = ! empty($user['avatar']) ? base_url('uploads/avatars/' . rawurlencode($user['avatar'])) : base_url('assets/avatar-placeholder.svg'); ?>
             <tr>
-                <th>ID</th>
-                <th>Username</th>
-                <th>Full Name</th>
-                <th>Created At</th>
+                <td><div class="user-cell"><img class="avatar" src="<?= esc($avatarUrl) ?>" alt="<?= esc($user['full_name']) ?> avatar"><div><strong><?= esc($user['full_name']) ?></strong><small>#<?= esc($user['id']) ?></small></div></div></td>
+                <td><span class="username">@<?= esc($user['username']) ?></span></td>
+                <td class="muted"><?= esc(date('M j, Y', strtotime($user['created_at']))) ?></td>
+                <td class="table-action"><a href="<?= site_url('users/' . $user['id'] . '/edit') ?>">Edit</a></td>
             </tr>
-        </thead>
-
-        <tbody>
-            <?php foreach ($users as $user): ?>
-                <tr>
-                    <td><?= esc($user['id']) ?></td>
-                    <td><?= esc($user['username']) ?></td>
-                    <td><?= esc($user['full_name']) ?></td>
-                    <td><?= esc($user['created_at']) ?></td>
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-
-</body>
-</html>
+        <?php endforeach ?>
+    </tbody>
+</table></div></div>
+<?= $this->endSection() ?>

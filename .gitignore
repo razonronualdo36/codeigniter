@@ -1,0 +1,10 @@
+/.env
+/vendor/
+/writable/cache/*
+/writable/debugbar/*
+/writable/logs/*
+/writable/session/*
+!/writable/**/.gitkeep
+/public/uploads/avatars/*
+!/public/uploads/avatars/.htaccess
+!/public/uploads/avatars/index.html

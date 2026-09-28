@@ -2,11 +2,17 @@
 
 namespace App\Controllers;
 
+use App\Models\CustomerModel;
+use App\Models\UserModel;
+
 class Pages extends BaseController
 {
     public function index()
     {
-        return view('home');
+        return view('home', [
+            'customerCount' => (new CustomerModel())->countAllResults(),
+            'userCount'     => (new UserModel())->countAllResults(),
+        ]);
     }
 
     public function about()
