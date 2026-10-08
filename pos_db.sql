@@ -56,6 +56,7 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
   `full_name` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `avatar` varchar(255) DEFAULT NULL,
   `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -64,12 +65,12 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `full_name`, `avatar`, `created_at`) VALUES
-(1, 'juan', 'Juan Dela Cruz', NULL, '2026-09-14 22:42:47'),
-(2, 'maria', 'Maria Santos', NULL, '2026-09-14 22:42:47'),
-(3, 'jose', 'Jose Reyes', NULL, '2026-09-14 22:42:47'),
-(4, 'ana', 'Ana Garcia', NULL, '2026-09-14 22:42:47'),
-(5, 'carlo', 'Carlo Mendoza', NULL, '2026-09-14 22:42:47');
+INSERT INTO `users` (`id`, `username`, `full_name`, `password`, `avatar`, `created_at`) VALUES
+(1, 'juan', 'Juan Dela Cruz', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2uheWG/igi.', NULL, '2026-09-14 22:42:47'),
+(2, 'maria', 'Maria Santos', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2uheWG/igi.', NULL, '2026-09-14 22:42:47'),
+(3, 'jose', 'Jose Reyes', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2uheWG/igi.', NULL, '2026-09-14 22:42:47'),
+(4, 'ana', 'Ana Garcia', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2uheWG/igi.', NULL, '2026-09-14 22:42:47'),
+(5, 'carlo', 'Carlo Mendoza', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2uheWG/igi.', NULL, '2026-09-14 22:42:47');
 
 --
 -- Indexes for dumped tables

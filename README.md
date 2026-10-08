@@ -1,61 +1,41 @@
-# CodeIgniter 4 Framework
+# Razon POS Account Management
 
-## What is CodeIgniter?
+This CodeIgniter 4 project manages customer and staff user accounts. TFA4 adds session-based authentication to the customer and user CRUD features from TFA3.
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+## TFA4 features
 
-This repository holds the distributable version of the framework.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+- Login using a username and hashed password
+- Password verification with `password_verify()`
+- Session data for the authenticated user
+- Authentication Filter protecting all customer and user management routes
+- Logout that destroys the session
+- Password creation and optional password changes for user accounts
+- Existing customer CRUD, user CRUD, validation, and avatar uploads
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+## Local setup
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
+1. Create a MySQL database named `pos_db`.
+2. For a fresh database, import `pos_db.sql`.
+3. If upgrading the existing TFA3 database, import `tfa4_update.sql` once instead.
+4. Configure the database connection and `app.baseURL` in `.env`.
+5. Run `php spark serve` from the project directory.
+6. Open `http://localhost:8080`.
 
-## Important Change with index.php
+## Sample login
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+All five users included in `pos_db.sql` use the following temporary password:
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+- Username: `juan`, `maria`, `jose`, `ana`, or `carlo`
+- Password: `password`
 
-**Please** read the user guide for a better explanation of how CI4 works!
+Change a user's password from the Edit User page after logging in.
 
-## Repository Management
+## InfinityFree update
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+1. Back up the hosted files and database.
+2. Import `tfa4_update.sql` into the existing hosted database once.
+3. Upload the updated `app` and `public/assets` files.
+4. Keep the hosted `.env` database credentials and hosted base URL.
+5. Confirm that logged-out access to `/customers` or `/users` redirects to `/login`.
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
-
-## Contributing
-
-We welcome contributions from the community.
-
-Please read the [*Contributing to CodeIgniter*](https://github.com/codeigniter4/CodeIgniter4/blob/develop/CONTRIBUTING.md) section in the development repository.
-
-## Server Requirements
-
-PHP version 8.2 or higher is required, with the following extensions installed:
-
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
-
-> [!WARNING]
-> - The end of life date for PHP 7.4 was November 28, 2022.
-> - The end of life date for PHP 8.0 was November 26, 2023.
-> - The end of life date for PHP 8.1 was December 31, 2025.
-> - If you are still using below PHP 8.2, you should upgrade immediately.
-> - The end of life date for PHP 8.2 will be December 31, 2026.
-
-Additionally, make sure that the following extensions are enabled in your PHP:
-
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+Do not commit real hosting passwords or database passwords to GitHub.

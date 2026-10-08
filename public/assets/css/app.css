@@ -21,8 +21,13 @@ a { color: inherit; }
 .brand { display: inline-flex; align-items: center; gap: 10px; color: var(--ink); font-weight: 800; text-decoration: none; letter-spacing: -.02em; }
 .brand span { display: grid; width: 36px; height: 36px; place-items: center; border-radius: 11px; background: var(--primary); color: white; }
 nav { display: flex; gap: 6px; }
+nav { align-items: center; }
 nav a { padding: 10px 14px; border-radius: 10px; color: #4b5563; font-size: .93rem; font-weight: 650; text-decoration: none; }
 nav a:hover { background: #edf5f2; color: var(--primary); }
+.nav-user { padding-left: 8px; color: var(--muted); font-size: .86rem; }
+.logout-form { margin: 0; }
+.nav-logout { padding: 10px 14px; border: 0; border-radius: 10px; background: transparent; color: #4b5563; font: inherit; font-size: .93rem; font-weight: 650; cursor: pointer; }
+.nav-logout:hover { background: #fff0ee; color: var(--danger); }
 .main-content { min-height: calc(100vh - 145px); padding-block: 46px 72px; }
 .site-footer { border-top: 1px solid var(--line); color: var(--muted); font-size: .85rem; padding: 24px 0; background: white; }
 .hero { overflow: hidden; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 40px; padding: 54px 58px; border-radius: 28px; color: white; background: linear-gradient(125deg, #143c35, #1f6f5f 62%, #318d79); box-shadow: var(--shadow); }
@@ -75,6 +80,7 @@ tbody tr:hover { background: #fbfdfc; }
 .profile-preview img { width: 62px; height: 62px; }
 .username { display: inline-block; padding: 5px 9px; border-radius: 8px; background: #f2f4f7; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .84rem; }
 .form-page { max-width: 720px; margin-inline: auto; }
+.login-page { max-width: 560px; }
 .form-card { display: grid; gap: 22px; padding: 30px; }
 .field { display: grid; gap: 8px; }
 .field label { font-size: .9rem; font-weight: 750; }

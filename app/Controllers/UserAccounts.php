@@ -33,6 +33,7 @@ class UserAccounts extends BaseController
         $rules = [
             'username'  => 'required|max_length[50]|is_unique[users.username]',
             'full_name' => 'required|max_length[100]',
+            'password'  => 'required|min_length[8]|max_length[72]',
         ];
 
         $messages = [
@@ -48,6 +49,7 @@ class UserAccounts extends BaseController
         (new UserModel())->insert([
             'username'   => trim((string) $this->request->getPost('username')),
             'full_name'  => trim((string) $this->request->getPost('full_name')),
+            'password'   => password_hash((string) $this->request->getPost('password'), PASSWORD_DEFAULT),
             'created_at' => date('Y-m-d H:i:s'),
         ]);
 
@@ -81,6 +83,7 @@ class UserAccounts extends BaseController
         $rules = [
             'username'  => "required|max_length[50]|is_unique[users.username,id,{$id}]",
             'full_name' => 'required|max_length[100]',
+            'password'  => 'permit_empty|min_length[8]|max_length[72]',
         ];
 
         $messages = [
@@ -121,11 +124,19 @@ class UserAccounts extends BaseController
             }
         }
 
-        $updated = $userModel->update($id, [
+        $updateData = [
             'username'  => trim((string) $this->request->getPost('username')),
             'full_name' => trim((string) $this->request->getPost('full_name')),
             'avatar'    => $avatarName,
-        ]);
+        ];
+
+        $newPassword = (string) $this->request->getPost('password');
+
+        if ($newPassword !== '') {
+            $updateData['password'] = password_hash($newPassword, PASSWORD_DEFAULT);
+        }
+
+        $updated = $userModel->update($id, $updateData);
 
         if (! $updated) {
             if ($uploadedName !== null) {
